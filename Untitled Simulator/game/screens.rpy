@@ -738,6 +738,7 @@ label goToClass:
                 "You got a zero."
             else:
                 "You got [mathFinalGrade] percent in the class. This is an F. You will need to retake the class."
+            $ mathGradesList.append(mathFinalGrade)
             $ currDate = currDate + datetime.timedelta(hours = 1)
         elif currClass == "Science":
             $ scienceFinalExamScore = intelligence * renpy.random.random()
@@ -757,7 +758,7 @@ label goToClass:
             elif scienceFinalGrade == 0:
                 "You got a zero."
             else:
-                "You got [mathFinalGrade] percent in the class. This is an F. You will need to retake the class."
+                "You got [scienceFinalGrade] percent in the class. This is an F. You will need to retake the class."
             $ currDate = currDate + datetime.timedelta(hours = 1)
         $ takenFinalExams = True
     else:
