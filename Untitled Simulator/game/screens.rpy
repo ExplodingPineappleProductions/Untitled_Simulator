@@ -581,7 +581,7 @@ label main_screen_label:
 screen personal_info_screen:
     frame:
         has vbox
-        text "Name: [Name]"
+        text "Name: [firstName] [lastName]"
         text "Age: [currAge]"
         if graduated == False:
             text "Grade: [currGrade]"
@@ -813,23 +813,8 @@ label home_screen_label:
     return
     
 label creating_bio:
-    $ Bio = ""
-    if currAge > 0:
-        $ Bio = Bio + str(Name) + " was born in " + str(birthYear) + ". "
-    else:
-        $ Bio = Bio + str(Name) + " will be born in " + str(birthYear) + ". "
-    if gender == "Male":
-        $ Bio = Bio + "He is " + str(currAge) + " years old. "
-        if graduated == False:
-           $ Bio = Bio + "He is in " + str(currGrade) + "th Grade. "
-    elif gender == "Female":
-        $ Bio = Bio + "She is " + str(currAge) + " years old. "
-        if graduated == False:
-            $ Bio = Bio + "She is in " + str(currGrade) + "th Grade. "
-    elif gender == "Other":
-        $ Bio = Bio + "They are " + str(currAge) + " years old. "
-        if graduated == false:
-            $ Bio = Bio + "They are in " + str(currGrade) + "th Grade. "
+    python:
+        Bio = mc.creatingBio()
     return
     
 label generating_academic_career:
@@ -838,4 +823,109 @@ label generating_academic_career:
             for item in ["History", "Math", "Science"]:
                 winterExamScore = intelligence * renpy.random.random()
                 finalExamScore = intelligence * renpy.random.random()
-    
+                
+label goToClassRevised:
+    if currDate == datetime.datetime(currDate.year,12,4) and not takenWinterExams:
+        "You have winter semester exams today."
+        if currClass == "History":
+            if historyWinterExamScore == -1:
+                $ historyWinterExamScore = intelligence * renpy.random.random()
+                "You got [historyWinterExamScore] percent."
+                $ currDate = currDate + datetime.timedelta(hours = 1)
+        elif currClass == "Math":
+            if mathWinterExamScore == -1:
+                $ mathWinterExamScore = intelligence * renpy.random.random()
+                "You got [mathWinterExamScore] percent."
+                $ currDate = currDate + datetime.timedelta(hours = 1)
+            else:
+                "You have already taken this exam"
+        elif currClass == "Science":
+            if scienceWinterExamScore == -1:
+                $ scienceWinterExamScore = intelligence * renpy.random.random()
+                "You got [scienceWinterExamScore] precent."
+                $ currDate = currDate + datetime.timedelta(hours = 1)
+            else:
+                "You have already taken this exam"
+    elif currDate == datetime.datetime(currDate.year,5,23) and not takenFinalExams:
+        "You have final exams today."
+        if currClass == "History":
+            $ historyFinalExamScore = intelligence * renpy.random.random()
+            $ historyFinalGrade = (historyFinalExamScore + historyWinterExamScore) / 2
+            if historyFinalGrade == 100:
+                "Congratulations! You got [historyFinalGrade] percent in the class."
+            elif historyFinalGrade >= 90:
+                "Congratulations! You got [historyFinalGrade] percent in the class. This is an A."
+            elif historyFinalGrade >= 80:
+                "Congratulations! You got [historyFinalGrade] percent in the class. This is a B."
+            elif historyFinalGrade >= 70:
+                "You passed the class. You got [historyFinalGrade] percent in the class. This is a C."
+            elif historyFinalGrade >= 60:
+                "Oh no! You got [historyFinalGrade] percent in the class. This is a D. You will need to retake the class."
+            elif historyFinalGrade >= 50:
+                "Oh no! You got [historyFinalGrade] percent in the class. This is an F. You will need to retake the class."
+            elif historyFinalGrade == 0:
+                "You got a zero."
+            else:
+                "You got [historyFinalGrade] percent in the class. This is an F. You will need to retake the class."
+            $ historyGradesList.append(historyFinalGrade)
+            $ currDate = currDate + datetime.timedelta(hours = 1)
+        elif currClass == "Math":
+            $ mathFinalExamScore = intelligence * renpy.random.random()
+            $ mathFinalGrade = (mathFinalExamScore + mathWinterExamScore) / 2
+            if mathFinalGrade == 100:
+                "Congratulations! You got [mathFinalGrade] percent in the class."
+            elif mathFinalGrade >= 90:
+                "Congratulations! You got [mathFinalGrade] percent in the class. This is an A."
+            elif mathFinalGrade >= 80:
+                "Congratulations! You got [mathFinalGrade] percent in the class. This is a B."
+            elif mathFinalGrade >= 70:
+                "You passed the class. You got [mathFinalGrade] percent in the class. This is a C."
+            elif mathFinalGrade >= 60:
+                "Oh no! You got [mathFinalGrade] percent in the class. This is a D. You will need to retake the class."
+            elif mathFinalGrade >= 50:
+                "Oh no! You got [scienceFinalGrade] percent in the class. This is an F. You will need to retake the class."
+            elif mathFinalGrade == 0:
+                "You got a zero."
+            else:
+                "You got [mathFinalGrade] percent in the class. This is an F. You will need to retake the class."
+            $ mathGradesList.append(mathFinalGrade)
+            $ currDate = currDate + datetime.timedelta(hours = 1)
+        elif currClass == "Science":
+            $ scienceFinalExamScore = intelligence * renpy.random.random()
+            $ scienceFinalGrade = (scienceFinalExamScore + scienceWinterExamScore) / 2
+            if scienceFinalGrade == 100:
+                "Congratulations! You got [scienceFinalGrade] percent in the class."
+            elif scienceFinalGrade >= 90:
+                "Congratulations! You got [scienceFinalGrade] percent in the class. This is an A."
+            elif scienceFinalGrade >= 80:
+                "Congratulations! You got [scienceFinalGrade] percent in the class. This is a B."
+            elif scienceFinalGrade >= 70:
+                "You passed the class. You got [scienceFinalGrade] percent in the class. This is a C."
+            elif scienceFinalGrade >= 60:
+                "Oh no! You got [scienceFinalGrade] percent in the class. This is a D. You will need to retake the class."
+            elif scienceFinalGrade >= 50:
+                "Oh no! You got [scienceFinalGrade] percent in the class. This is an F. You will need to retake the class."
+            elif scienceFinalGrade == 0:
+                "You got a zero."
+            else:
+                "You got [scienceFinalGrade] percent in the class. This is an F. You will need to retake the class."
+            $ currDate = currDate + datetime.timedelta(hours = 1)
+        $ takenFinalExams = True
+    else:
+        "You decide to go to class."
+        "You raise your intelligence."
+        if currClass == "History":
+            "You increase your knowledge of history."
+            $ knowledgeOfHistory += renpy.random.randint(1,3)
+            $ historyClassDone = True
+        elif currClass == "Math":
+            "You increase your knowledge of math."
+            $ knowledgeOfMath += renpy.random.randint(1,3)
+            $ mathClassDone = True
+        elif currClass == "Science":
+            "You increase your knowledge of science"
+            $ knowledgeOfScience += renpy.random.randint(1,3)
+            $ scienceClassDone = True
+        $ intelligence += renpy.random.randint(1,2)
+        $ currDate = currDate + datetime.timedelta(minutes = 55)
+    return

@@ -1,4 +1,4 @@
-Sun Jun 07 15:56:17 2015
+Tue Jun 09 21:40:08 2015
 Windows-7-6.1.7601-SP1
 Ren'Py 6.18.3.761
 Untitled Simulator 0.0.1
@@ -127,8 +127,8 @@ Texture testing:
 Performance test:
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.016000 seconds.
+- Frame drawn at 0.012000 seconds.
+- Frame drawn at 0.018000 seconds.
+- Frame drawn at 0.022000 seconds.
 - Frame drawn at 0.026000 seconds.
-- Frame drawn at 0.033000 seconds.
-- Frame drawn at 0.050000 seconds.
-- 0.050000 seconds to render 5 frames.
+- 0.026000 seconds to render 5 frames.

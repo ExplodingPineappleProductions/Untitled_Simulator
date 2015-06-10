@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 756: invalid syntax
-    Bio = Bio + Name " was born in" + Birthyear + "."
-                                   ^
-    
+File "game/script.rpy", line 7: python block expects a non-empty block.
+    python:
+           ^
 
 Ren'Py Version: Ren'Py 6.18.3.761

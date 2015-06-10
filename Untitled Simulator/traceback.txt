@@ -1,28 +1,25 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/screens.rpy", line 596, in script call
-    call creating_bio
-  File "game/screens.rpy", line 756, in script
-    $ Bio = Bio + str(Name) + " was born in " + str(Birthyear) + ". "
-  File "game/screens.rpy", line 756, in <module>
-    $ Bio = Bio + str(Name) + " was born in " + str(Birthyear) + ". "
-NameError: name 'Birthyear' is not defined
+  File "game/screens.rpy", line 596, in script
+    python:
+  File "game/screens.rpy", line 597, in <module>
+    mc.creatingBio()
+NameError: global name 'graduated' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/screens.rpy", line 596, in script call
-    call creating_bio
-  File "game/screens.rpy", line 756, in script
-    $ Bio = Bio + str(Name) + " was born in " + str(Birthyear) + ". "
+  File "game/screens.rpy", line 596, in script
+    python:
   File "C:\Users\Eric\Desktop\Renpy\renpy-6.18.3-sdk\renpy\ast.py", line 785, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "C:\Users\Eric\Desktop\Renpy\renpy-6.18.3-sdk\renpy\python.py", line 1382, in py_exec_bytecode
     exec bytecode in globals, locals
-  File "game/screens.rpy", line 756, in <module>
-    $ Bio = Bio + str(Name) + " was born in " + str(Birthyear) + ". "
-NameError: name 'Birthyear' is not defined
+  File "game/screens.rpy", line 597, in <module>
+    mc.creatingBio()
+  File "Classes.py", line 47, in creatingBio
+NameError: global name 'graduated' is not defined
 
 Windows-7-6.1.7601-SP1
 Ren'Py 6.18.3.761

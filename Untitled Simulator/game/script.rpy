@@ -4,7 +4,7 @@
 # eg. image eileen happy = "eileen_happy.png"
 
 # Declare characters used by this game.
-define mc = Character("[Name]")
+
 
 
 # The game starts here.
@@ -12,8 +12,11 @@ label start:
     python:
         #initial variables
         import datetime
-        Name = renpy.input("What would you like your name to be?", default = "Richard Tweed")
-        Name = Name.strip()
+        import Classes
+        firstName = renpy.input("What would you like your first name to be?", default = "Richard")
+        lastName = renpy.input("What would you like your last name to be?", default = "Tweed")
+        firstName = firstName.strip()
+        lastName = lastName.strip()
         currYear = renpy.input("What year would you like it to be?", default = datetime.date.today().year)
         currMonth = renpy.input("What month would you like it to be?", default = datetime.date.today().month)
         currDay = renpy.input("What day would you like to be?", default = datetime.date.today().day)
@@ -38,13 +41,6 @@ label start:
         mathClassDone = False
         scienceClassDone = False
         dayDone = False
-        #fundamental skills
-        intelligence = renpy.random.randint(0,101)
-        strength = renpy.random.randint(0,101)
-        #knowledge skills
-        knowledgeOfHistory = renpy.random.randint(0,101)
-        knowledgeOfMath = renpy.random.randint(0,101)
-        knowledgeOfScience = renpy.random.randint(0,101)
         
     "What is your gender?"
     menu:
@@ -54,5 +50,14 @@ label start:
            $ gender = "Female"
         "Other":
            $ gender = "Other"
+    python:
+        mc = Classes.Person(firstName,lastName,currAge,gender,birthYear)
+        #fundamental skills
+        intelligence = mc.getIntelligence()
+        strength = mc.getStrength()
+        #knowledge skills
+        knowledgeOfHistory = renpy.random.randint(0,101)
+        knowledgeOfMath = renpy.random.randint(0,101)
+        knowledgeOfScience = renpy.random.randint(0,101)
     call main_screen_label
     return
