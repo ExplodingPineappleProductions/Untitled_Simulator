@@ -45,6 +45,18 @@ label start:
         knowledgeOfHistory = renpy.random.randint(0,101)
         knowledgeOfMath = renpy.random.randint(0,101)
         knowledgeOfScience = renpy.random.randint(0,101)
+        if currGrade < 0:
+            preSchool = True
+        elif currGrade < 6:
+            elemenSchool = True
+        elif currGrade < 9:
+            midSchool = True
+        elif currGrade < 13:
+            highSchool = True
+        elif currGrade < 17:
+            uni = True
+        else:
+            realLife = True
         
     "What is your gender?"
     menu:
@@ -52,7 +64,7 @@ label start:
            $ gender = "Male"
         "Female":
            $ gender = "Female"
-        "Other":
+        "Non-Binary/Other":
            $ gender = "Other"
     call main_screen_label
     return
